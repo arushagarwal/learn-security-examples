@@ -25,11 +25,16 @@ This will create a database in MongoDB called __infodisclosure__. Verify its pre
     ```
 
 4. Do you see the server crashing?
+Yes
 
 ## For you to do
 
 Answer the following:
 
 1. Briefly explain the potential vulnerabilities in **insecure.ts** that can lead to a DoS attack.
+Here, the attacker exploits a vulnerability to crash the server by sending a script at place of id which leads to denial of service at server leading it to crash
 2. Briefly explain how a malicious attacker can exploit them.
+the mongoose query is expecting an id which has a particular format and this id is coming from the http request which the client provides, and the malicious attacker sends a script at its place which causes mongoose to crash, and since the developer didnt handle it, it caused the server to crash.
 3. Briefly explain the defensive techniques used in **secure.ts** to prevent the DoS vulnerability?
+used try catch or handle the errors and stop the server from crash
+used rate limiter to check the rate limit appropriate, for every IP, every IP can send 1 request every 5 seconds.
